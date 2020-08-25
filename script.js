@@ -62,6 +62,7 @@ let observer = new MutationObserver(function (event) {
      document.getElementById("nav-drawer").style.width="400px";
    }else{
      document.body.style.marginLeft="0px";
+     document.getElementById("nav-drawer").style.width="0px";
    }
 });
 
