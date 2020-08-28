@@ -73,3 +73,23 @@ observer.observe(e, {
   childList: false, 
   characterData: false
 });
+
+// Crea il pulsante per chiudere la chat
+let bar = document.getElementsByClassName("border-bottom p-1 px-sm-2 py-sm-3");
+if(bar!==null){
+  let icon = document.createElement("i");
+  let icon_click = document.createElement("a");
+  let div_icon = document.createElement("div");
+  icon.setAttribute("class", "fa fa-times");
+  icon.setAttribute("aria-hidden","true");
+  icon_click.setAttribute("class","nav-link");
+  icon_click.setAttribute("role","button");
+  icon_click.setAttribute("href","#");
+  icon_click.addEventListener("click",function(e) {
+    // Propaga il click al pulsante originale, che finisce sotto il menu della chat
+    document.getElementsByClassName("nav-link d-inline-block popover-region-toggle position-relative")[0].click();
+	});
+  icon_click.appendChild(icon);
+  div_icon.appendChild(icon_click);
+  bar[0].children[0].appendChild(div_icon);
+}
