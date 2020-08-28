@@ -14,8 +14,10 @@ Sono sicuro che esista una procedura ancora più immediata per le persone pigre,
 Con qualche magheggio strano, tramite i plugin [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=it) (Chrome) 
 e [Greasemonkey](https://addons.mozilla.org/it/firefox/addon/greasemonkey/) (Firefox) modifica la pagina di Moodle stesso.
 
-Aggiunge i titoli sopra ogni pagina del corso e una volta aperta la pagina del corso cambia il nome di questo nel menù convertendolo dal codice del corso (Esempio: [CT0091])
+* Aggiunge i titoli sopra ogni pagina del corso 
+* Una volta aperta la pagina del corso cambia il nome di questo nel menù convertendolo dal codice del corso (Esempio: [CT0091])
 al nome del corso (INTERAZIONE UOMO-MACCHINA [CT0091]).
+* Aggiunge un tasto per chiudere la chat (ok, forse in parte è colpa mia, ma il tasto originale finisce sotto il menu della chat stesso quindi diventa impossibile chiuderla... in ogni caso, per quale motivo la chat dovrebbe sovrapporsi alla pagina??? D:)
 
 ## Perché?
 Non so quale malato di mente abbia pensato che fosse più immediato accede alle pagine dei corsi tramite i codici di questi anziché i nomi effettivi e per di più
