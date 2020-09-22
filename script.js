@@ -5,7 +5,7 @@
 // @grant    none
 // ==/UserScript==
 
-// document.title
+
 let h = document.createElement("H1");                 // Creo un'intestazione
 let bold = document.createElement('strong');          // in grossetto
 let name = document.title;                            // col nome della materia (titolo della pagina)
@@ -15,14 +15,12 @@ h.innerHTML=name;                                     // e concateno il tutto pe
 bold.appendChild(h);                                  // TL;DR aggiungo come titolo il nome
 doc.prepend(bold);                                    // del corso    
 
-let sub = JSON.parse(localStorage.getItem("sub"));  // Carico una lista delle materie conosciute
-
-if(sub===null){                                     // Se non posso caricarla, questa lista viene creata 
-  sub = [];                                         // nuova, vuota
-}
+// Carico la lista delle materie che conosco, se non c'è allora è vuota
+let sub = JSON.parse(localStorage.getItem("sub")) || [];
 
 let url = document.location.href;                   // Url della pagina
 let view = url.includes("view.php?id=")             // Controllo se è una pagina di un corso
+
 
 if(view){                                           // Se viene aperta una pagina del corso
    let id = url.substring(url.indexOf("id=")+3);    // viene salvato l'ID
@@ -46,6 +44,52 @@ sub.forEach(function(s){
   let a = document.querySelector('a[data-key="'+s.id+'"]');
   if(a!=null){
     a.children[0].children[0].children[1].innerHTML=s.title;
+    
+    // Aggiungo icona per editare il nome
+    let edit_icon = document.createElement("i");
+    let edit_icon_click = document.createElement("a");
+    let div_icon = document.createElement("div");
+    edit_icon.setAttribute("class", "fa fa-edit");
+    edit_icon.setAttribute("aria-hidden","true");
+    edit_icon_click.setAttribute("class","nav-link");
+    edit_icon_click.setAttribute("role","button");
+    edit_icon_click.setAttribute("href","#");
+    edit_icon_click.addEventListener("click", function(){
+      let name_div = document.getElementById("div-name-"+s.id);
+      name_div.hidden = 1-name_div.hidden;
+    }, false);
+    edit_icon_click.appendChild(edit_icon);
+    div_icon.appendChild(edit_icon_click);
+    a.children[0].children[0].appendChild(div_icon);
+    
+    // Aggiungo campo nascosto per editare il nome
+    let name_input = document.createElement("input");
+    let div_name = document.createElement("div");
+    name_input.setAttribute("type", "text");
+		name_input.setAttribute("placeholder", "Modifica nome corso");
+    name_input.setAttribute("id","name-"+s.id);
+    name_input.addEventListener("click", function(event) {
+    	event.preventDefault();
+    }, false);
+    div_name.setAttribute("id","div-name-"+s.id);
+    div_name.setAttribute("class","row");
+    div_name.hidden = true;
+    div_name.appendChild(name_input);
+    a.children[0].appendChild(div_name);
+    
+    // Aggiungo icona per confermare l'input
+    let confirm_icon = document.createElement("i");
+    let confirm_icon_click = document.createElement("a");
+    confirm_icon.setAttribute("class", "fa fa-check");
+    confirm_icon.setAttribute("aria-hidden","true");
+    confirm_icon_click.setAttribute("class","nav-link");
+    confirm_icon_click.setAttribute("role","button");
+    confirm_icon_click.setAttribute("href","#");
+    confirm_icon_click.addEventListener("click", function(){
+      edit_name(s.id, name_input.value);
+    }, false);
+    confirm_icon_click.appendChild(confirm_icon);
+    div_name.appendChild(confirm_icon_click);
   }
 });
 
@@ -92,4 +136,24 @@ if(bar!==null){
   icon_click.appendChild(icon);
   div_icon.appendChild(icon_click);
   bar[0].children[0].appendChild(div_icon);
+}
+
+// Utils
+let prevent_href = function(e) {
+  e.preventDefault();
+}
+
+// Individua il nome nel pseudo-dizionario di nomi salvati
+// lo modifica e lo salva
+let edit_name = function(id, name) {
+  let i = 0;
+	while(i<sub.length && sub[i].id!=id){
+  	i++;		
+	}
+  if(i<sub.length){
+    let a = document.querySelector('a[data-key="'+id+'"]');
+    a.children[0].children[0].children[1].innerHTML=name;
+  	sub[i].title = name;
+  }
+  localStorage.setItem("sub", JSON.stringify(sub));
 }
