@@ -49,7 +49,7 @@ sub.forEach(function(s){
     let edit_icon = document.createElement("i");
     let edit_icon_click = document.createElement("a");
     let div_icon = document.createElement("div");
-    edit_icon.setAttribute("class", "fa fa-edit");
+    edit_icon.setAttribute("class", "fa fa-edit fa-lg");
     edit_icon.setAttribute("aria-hidden","true");
     edit_icon_click.setAttribute("class","nav-link");
     edit_icon_click.setAttribute("role","button");
@@ -80,7 +80,7 @@ sub.forEach(function(s){
     // Aggiungo icona per confermare l'input
     let confirm_icon = document.createElement("i");
     let confirm_icon_click = document.createElement("a");
-    confirm_icon.setAttribute("class", "fa fa-check");
+    confirm_icon.setAttribute("class", "fa fa-check fa-lg");
     confirm_icon.setAttribute("aria-hidden","true");
     confirm_icon_click.setAttribute("class","nav-link");
     confirm_icon_click.setAttribute("role","button");
@@ -90,6 +90,14 @@ sub.forEach(function(s){
     }, false);
     confirm_icon_click.appendChild(confirm_icon);
     div_name.appendChild(confirm_icon_click);
+    
+    // Cambio colore icone se la materia è selezionata
+    if(a.classList.contains("active")){
+    	edit_icon.style["color"] = "white";
+      confirm_icon.style["color"] = "white";
+      confirm_icon.style["text-shadow"] = "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black";
+      edit_icon.style["text-shadow"] = "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black";
+    }
   }
 });
 
@@ -157,3 +165,4 @@ let edit_name = function(id, name) {
   }
   localStorage.setItem("sub", JSON.stringify(sub));
 }
+
