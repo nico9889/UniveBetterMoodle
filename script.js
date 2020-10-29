@@ -1,6 +1,8 @@
 // ==UserScript==
 // @name     Make Unive Moodle Great Again
-// @version  1
+// @version  1.4
+// @downloadURL https://github.com/nico9889/UniveBetterMoodle/releases/download/latest/mumga.user.js
+// @updateURL https://github.com/nico9889/UniveBetterMoodle/releases/download/latest/mumga.user.js
 // @match       *://moodle.unive.it/*
 // @grant    none
 // ==/UserScript==
@@ -165,4 +167,3 @@ let edit_name = function(id, name) {
     }
     localStorage.setItem("sub", JSON.stringify(sub));
 };
-
