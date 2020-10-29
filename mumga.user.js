@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     Make Unive Moodle Great Again
-// @version  1.4
+// @version  1.5
 // @downloadURL https://raw.githubusercontent.com/nico9889/UniveBetterMoodle/master/mumga.user.js
 // @updateURL https://raw.githubusercontent.com/nico9889/UniveBetterMoodle/master/mumga.user.js
 // @match       *://moodle.unive.it/*
