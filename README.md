@@ -3,12 +3,8 @@ Piccolo script per rendere Moodle (Unive) un posto migliore!
 
 ## Installazione
 * Installa il plugin [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=it) (Chrome) 
-o [Greasemonkey](https://addons.mozilla.org/it/firefox/addon/greasemonkey/) (Firefox)
-* Copia il contenuto dello script (l'unico file qui nel repository con .js alla fine)
-* Seleziona il plugin Tampermonkey/Greasemonkey dal browser e clicca "Crea nuovo script" (o dicitura equivalente)
-* Incolla il contenuto dello script nell'editor del plugin e salva
-
-Sono sicuro che esista una procedura ancora più immediata per le persone pigre, però sono altrettanto pigro e non ho voglia di cercarla.
+o [Greasemonkey](https://addons.mozilla.org/it/firefox/addon/greasemonkey/)/[TamperMonkey](https://addons.mozilla.org/it/firefox/addon/tampermonkey/) (Firefox)
+* [Clicca qui](https://github.com/nico9889/UniveBetterMoodle/raw/master/mumga.user.js)
 
 ## Come funziona
 Con qualche magheggio strano, tramite i plugin [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=it) (Chrome) 
@@ -16,8 +12,9 @@ e [Greasemonkey](https://addons.mozilla.org/it/firefox/addon/greasemonkey/) (Fir
 
 * Aggiunge i titoli sopra ogni pagina del corso 
 * Una volta aperta la pagina del corso cambia il nome di questo nel menù convertendolo dal codice del corso (Esempio: [CT0091])
-al nome del corso (INTERAZIONE UOMO-MACCHINA [CT0091]).
+al nome del corso (INTERAZIONE UOMO-MACCHINA [CT0091]). Puoi modificarli e inserirli personalizzati :D
 * Aggiunge un tasto per chiudere la chat (il tasto originale per chiudere finisce sotto il menu della chat stesso quindi diventa impossibile chiuderla...)
+
 
 ## Perché?
 Non so quale malato di mente abbia pensato che fosse più immediato accede alle pagine dei corsi tramite i codici di questi anziché i nomi effettivi e per di più
