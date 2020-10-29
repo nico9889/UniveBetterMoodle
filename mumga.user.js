@@ -1,40 +1,42 @@
 // ==UserScript==
 // @name     Make Unive Moodle Great Again
-// @version  1.5
-// @downloadURL https://raw.githubusercontent.com/nico9889/UniveBetterMoodle/master/mumga.user.js
+// @description Rende Moodle un posto migliore con tante piccole modifiche :). Attenzione: questo script per il corretto funzionamento salva il NOME DEI CORSI che apri su Moodle nella memoria locale del tuo browser. Questi sono POTENZIALMENTE accessibili da altri script di terze parti che agiscono sulla pagina di Moodle. Fai sempre attenzione a quello che installi, è tua responsabilità proteggere i dati che ritieni sensibili.
+// @version  1.5.1
 // @updateURL https://raw.githubusercontent.com/nico9889/UniveBetterMoodle/master/mumga.user.js
 // @match       *://moodle.unive.it/*
 // @grant    none
 // ==/UserScript==
 
-
-let h = document.createElement("H1");                   // Creo un'intestazione
-let bold = document.createElement('strong');            // in grossetto
-let name = document.title;                                      // col nome della materia (titolo della pagina)
-let doc = document.querySelector('div[role="main"]');   // che faccia parte della pagina del corso
-name.fontsize(16);                                          // e sia ben visibile
-h.innerHTML=name;                                     // e concateno il tutto per aggiungerlo
-bold.appendChild(h);                                  // TL;DR aggiungo come titolo il nome
-doc.prepend(bold);                                    // del corso
+// Aggiunge in intestazione del corso il nome del corso
+let h = document.createElement("H1");
+let bold = document.createElement('strong');
+let name = document.title;
+let doc = document.querySelector('div[role="main"]');
+name.fontsize(16);
+h.innerHTML=name;
+bold.appendChild(h);
+doc.prepend(bold);
 
 // Carico la lista delle materie che conosco, se non c'è allora è vuota
 let sub = JSON.parse(localStorage.getItem("sub")) || [];
 
-let url = document.location.href;                   // Url della pagina
-let view = url.includes("view.php?id=");             // Controllo se è una pagina di un corso
+let url = document.location.href;
+let view = url.includes("view.php?id=");
 
-
-if(view){                                           // Se viene aperta una pagina del corso
-    let id = url.substring(url.indexOf("id=")+3);    // viene salvato l'ID
+// Ricava il nome del corso se la pagina è valida
+if(view){
+    let id = url.substring(url.indexOf("id=")+3);
     let check = false;
-    sub.forEach(function(s){                         // Viene controllato se l'ID lo conosciamo già
-        if(s.id===id) {                                // perché salvato nella lista delle materie
+    sub.forEach(function(s){
+        if(s.id===id) {
             check = true;
         }
     });
-    if(!check){                                      // Se non lo conosciamo, salviamo l'ID assieme
-        sub.push({                                    // al titolo della pagina, che corrisponde al nome
-            id: id,                                    // del corso
+
+    // Salva il nome del corso in un dizionario
+    if(!check){
+        sub.push({
+            id: id,
             title: document.title
         });
     }
@@ -95,8 +97,8 @@ sub.forEach(function(s){
 
         // Cambio colore icone se la materia è selezionata
         if(a.classList.contains("active")){
-            edit_icon.style["color"] = "white";
-            confirm_icon.style["color"] = "white";
+            edit_icon.style.color = "white";
+            confirm_icon.style.color = "white";
             confirm_icon.style["text-shadow"] = "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black";
             edit_icon.style["text-shadow"] = "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black";
         }
@@ -106,7 +108,6 @@ sub.forEach(function(s){
 // Salva la lista dei corsi
 localStorage.setItem("sub", JSON.stringify(sub));
 
-// Corpo della pagina
 let e = document.body;
 
 // Scala la barra di navigazione laterale per fare spazio al testo
@@ -149,11 +150,13 @@ if(bar!==null){
 }
 
 // Utils
+
+// Previene l'apertura di un link in un determinato elemento cliccato
 let prevent_href = function(e) {
     e.preventDefault();
 };
 
-// Individua il nome nel pseudo-dizionario di nomi salvati
+// Individua il nome nello pseudo-dizionario di nomi salvati
 // lo modifica e lo salva
 let edit_name = function(id, name) {
     let i = 0;
