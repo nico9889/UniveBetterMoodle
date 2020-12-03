@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Make Unive Moodle Great Again
 // @description Rende Moodle un posto migliore con tante piccole modifiche :). Attenzione: questo script per il corretto funzionamento salva il NOME DEI CORSI che apri su Moodle nella memoria locale del tuo browser. Questi sono POTENZIALMENTE accessibili da altri script di terze parti che agiscono sulla pagina di Moodle. Fai sempre attenzione a quello che installi, è tua responsabilità proteggere i dati che ritieni sensibili.
-// @version  1.5.1
+// @version  1.5.2
 // @updateURL https://raw.githubusercontent.com/nico9889/UniveBetterMoodle/master/mumga.user.js
 // @match       *://moodle.unive.it/*
 // @grant    none
@@ -26,20 +26,23 @@ let view = url.includes("view.php?id=");
 // Ricava il nome del corso se la pagina è valida
 if(view){
     let id = url.substring(url.indexOf("id=")+3);
-    let check = false;
-    sub.forEach(function(s){
-        if(s.id===id) {
-            check = true;
-        }
-    });
+	let numbers = /^[0-9]+$/;
+	if(id.match(numbers)){
+		let check = false;
+		sub.forEach(function(s){
+			if(s.id===id) {
+				check = true;
+			}
+		});
 
-    // Salva il nome del corso in un dizionario
-    if(!check){
-        sub.push({
-            id: id,
-            title: document.title
-        });
-    }
+		// Salva il nome del corso in un dizionario
+		if(!check){
+			sub.push({
+				id: id,
+				title: document.title
+			});
+		}
+	}
 }
 
 // Per ogni materia in lista, cerca l'ID corrispondente nella pagina, se lo trova ne cambia
