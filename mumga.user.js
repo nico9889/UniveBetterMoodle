@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Make Unive Moodle Great Again
 // @description Rende Moodle un posto migliore con tante piccole modifiche :)
-// @version  1.6.0
+// @version  1.6.2
 // @updateURL https://raw.githubusercontent.com/nico9889/UniveBetterMoodle/master/mumga.user.js
 // @match       *://moodle.unive.it/*
 // @grant    none
@@ -9,6 +9,7 @@
 
 let sub = new Map();
 // Aggiunge in intestazione del corso il nome del corso
+/* Siamo nel futuro, è stato aggiunto come feature di default!
 function set_subject_title(){
   let h = document.createElement("H1");
   let bold = document.createElement('strong');
@@ -19,7 +20,7 @@ function set_subject_title(){
   bold.appendChild(h);
   doc.prepend(bold);
 }
-
+*/
 
 function load_subject(){
   // Carico la lista delle materie che conosco, se non c'è allora è vuota
@@ -177,13 +178,12 @@ let edit_name = function(id, name) {
     }
 };
 
-window.onload = function(){
-  set_subject_title();
-  load_subject();
-  get_subject_name();
-  update_subject_navigation();
-  save_subject();
-  set_wider_subject_navigation();
-  add_close_chat_button();
-  console.log("MUMGA - Tweaks loaded");
-}
+
+//set_subject_title();
+load_subject();
+get_subject_name();
+update_subject_navigation();
+save_subject();
+set_wider_subject_navigation();
+add_close_chat_button();
+console.log("MUMGA - Tweaks loaded");
