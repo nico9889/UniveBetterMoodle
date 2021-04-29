@@ -1,41 +1,26 @@
 // ==UserScript==
 // @name     Make Unive Moodle Great Again
 // @description Rende Moodle un posto migliore con tante piccole modifiche :)
-// @version  1.6.2
+// @version  1.7.0
 // @updateURL https://raw.githubusercontent.com/nico9889/UniveBetterMoodle/master/mumga.user.js
 // @match       *://moodle.unive.it/*
 // @grant    none
 // ==/UserScript==
 
 let sub = new Map();
-// Aggiunge in intestazione del corso il nome del corso
-/* Siamo nel futuro, è stato aggiunto come feature di default!
-function set_subject_title(){
-  let h = document.createElement("H1");
-  let bold = document.createElement('strong');
-  let name = document.title;
-  let doc = document.querySelector('div[role="main"]');
-  name.fontsize(16);
-  h.innerHTML=name;
-  bold.appendChild(h);
-  doc.prepend(bold);
-}
-*/
+
 
 function load_subject(){
   // Carico la lista delle materie che conosco, se non c'è allora è vuota
   sub = new Map(JSON.parse(localStorage.getItem("mumga-sub"))) || new Map();
 }
 
-function get_subject_name(){
-  let url = document.location.href;
-  let view = url.includes("view.php?id=");
 
-  // Ricava il nome del corso se la pagina è valida
-  if(view){
-      let id = url.substring(url.indexOf("id=")+3);
-  	let numbers = /^[0-9]+$/;
-  	if(id.match(numbers)){
+function get_subject_name(){
+  let url = new URL(document.location.href);
+  let id = url.searchParams.get("id");
+  if(id){
+  	if(id.match(/^[0-9]+$/)){
   		// Salva il nome del corso in un dizionario
   		if(!sub.has(id)){
   			sub.set(id, document.title);
@@ -43,6 +28,7 @@ function get_subject_name(){
   	}
   }
 }
+
 
 // Per ogni materia in lista, cerca l'ID corrispondente nella pagina, se lo trova ne cambia
 // vuol dire che è presente nella barra laterale e ne cambia il testo interno da codice a nome
@@ -109,10 +95,12 @@ function update_subject_navigation(){
   });
 }
 
+
 function save_subject(){
   // Salva la lista dei corsi
   localStorage.setItem("mumga-sub", JSON.stringify(Array.from(sub.entries())));
 }
+
 
 function set_wider_subject_navigation(){
   let e = document.body;
@@ -136,6 +124,8 @@ function set_wider_subject_navigation(){
       characterData: false
   });
 }
+
+
 // Crea il pulsante per chiudere la chat
 function add_close_chat_button(){
   let bar = document.getElementsByClassName("border-bottom p-1 px-sm-2 py-sm-3");
@@ -157,17 +147,17 @@ function add_close_chat_button(){
       bar[0].children[0].appendChild(div_icon);
   }
 }
-// Utils
+
 
 // Previene l'apertura di un link in un determinato elemento cliccato
 let prevent_href = function(e) {
     e.preventDefault();
 };
 
+
 // Individua il nome nello pseudo-dizionario di nomi salvati
 // lo modifica e lo salva
 let edit_name = function(id, name) {
-    console.log("'" + name + "'");
     if(sub.has(id)){
         let a = document.querySelector('a[data-key="'+id+'"]');
         if(name){
