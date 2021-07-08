@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Make Unive Moodle Great Again
 // @description Rende Moodle un posto migliore con tante piccole modifiche :)
-// @version  2.0.0
+// @version  2.0.1
 // @updateURL https://raw.githubusercontent.com/nico9889/UniveBetterMoodle/master/mumga.user.js
 // @match       *://moodle.unive.it/*
 // @grant    none
@@ -205,6 +205,9 @@ function set_wider_subject_navigation() {
 
 
 // Crea il pulsante per chiudere la chat
+// Update - Apparentemente dopo circa un anno ce l'hanno fatta ad aggiungere ufficialmente un pulsante per chiudere la
+// chat, posizionandolo nel posto più scomodo in assoluto, disabilito temporaneamente questo ma lascio la funzione
+// nel caso serva riabilitarlo su richiesta
 function add_close_chat_button() {
     const bar = document.getElementsByClassName("border-bottom p-1 px-sm-2 py-sm-3");
     if (bar !== null) {
@@ -300,7 +303,7 @@ get_subject_name();
 update_subject_navigation();
 save_subject();
 set_wider_subject_navigation();
-add_close_chat_button();
+// add_close_chat_button();
 set_toggle_favourite();
 set_favourite_menu();
 console.log("MUMGA - Tweaks loaded");
