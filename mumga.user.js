@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Make Unive Moodle Great Again
 // @description Rende Moodle un posto migliore con tante piccole modifiche :)
-// @version  2.0.1
+// @version  2.0.2
 // @updateURL https://raw.githubusercontent.com/nico9889/UniveBetterMoodle/master/mumga.user.js
 // @match       *://moodle.unive.it/*
 // @grant    none
@@ -15,7 +15,6 @@ function load_subject() {
     // Carico la lista delle materie che conosco, se non c'è allora è vuota
     sub = new Map(JSON.parse(localStorage.getItem("mumga-sub"))) || new Map();
     favourites = JSON.parse(localStorage.getItem("mumga-fav")) || [];
-    console.log(favourites);
 }
 
 function generate_favourites(){
