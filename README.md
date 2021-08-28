@@ -7,19 +7,17 @@ o [Greasemonkey](https://addons.mozilla.org/it/firefox/addon/greasemonkey/)/[Tam
 * [Clicca qui](https://github.com/nico9889/UniveBetterMoodle/raw/master/mumga.user.js)
 
 ## Come funziona
-Con qualche magheggio strano, tramite i plugin [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=it) (Chrome) 
-e [Greasemonkey](https://addons.mozilla.org/it/firefox/addon/greasemonkey/) (Firefox) modifica la pagina di Moodle stesso.
+Con qualche magheggio, tramite i plugin [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=it) (Chrome) 
+e [Greasemonkey](https://addons.mozilla.org/it/firefox/addon/greasemonkey/)/[TamperMonkey](https://addons.mozilla.org/it/firefox/addon/tampermonkey/) (Firefox), modifica la pagina di Moodle stesso per aggiungere funzionalità :D.
 
-* Aggiunge i titoli sopra ogni pagina del corso 
+* ~~Aggiunge i titoli sopra ogni pagina del corso~~ Ora c'è di default, solo su alcuni corsi
 * Una volta aperta la pagina del corso cambia il nome di questo nel menù convertendolo dal codice del corso (Esempio: [CT0091])
 al nome del corso (INTERAZIONE UOMO-MACCHINA [CT0091]). Puoi modificarli e inserirli personalizzati :D
-* Aggiunge un tasto per chiudere la chat (il tasto originale per chiudere finisce sotto il menu della chat stesso quindi diventa impossibile chiuderla...)
-
+* ~~Aggiunge un tasto per chiudere la chat (il tasto originale per chiudere finisce sotto il menu della chat stesso quindi diventa impossibile chiuderla...)~~ Qualcuno si è reso conto del problema :)
+* Aggiunge un menu dove salvare i corsi preferiti (vedi vicino al nome utente, a sinistra dell'icona delle notifiche)
 
 ## Perché?
-Non so quale malato di mente abbia pensato che fosse più immediato accede alle pagine dei corsi tramite i codici di questi anziché i nomi effettivi e per di più
-con l'ultimo aggiornamento han deciso che il nome del corso come intestazione della pagina fosse troppo intuitivo e andava rimosso.
-Più che chiedersi perché ho fatto questo script, ci sarebbe da chiedersi chi progetta certe cose.
+Perché ero stanco di dover cliccare sopra ogni singolo corso di Moodle per trovare quello giusto e impararsi a memoria tutti i codici dei corsi richiede troppa fatica quando sono tanti.
 
 # English version
 

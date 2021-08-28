@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name     Make Unive Moodle Great Again
 // @description Rende Moodle un posto migliore con tante piccole modifiche :)
-// @version  2.0.2
+// @version  2.0.3
 // @updateURL https://raw.githubusercontent.com/nico9889/UniveBetterMoodle/master/mumga.user.js
 // @match       *://moodle.unive.it/*
 // @grant    none
@@ -265,34 +265,36 @@ function toggle_favourite(){
 }
 
 function set_toggle_favourite(){
-    const course_content = document.getElementsByClassName("course-content");
-    if (course_content) {
-        const label = document.createElement("a");
-        label.setAttribute("role", "button");
+	if(current_course){
+		const course_content = document.getElementsByClassName("course-content");
+		if (course_content) {
+			const label = document.createElement("a");
+			label.setAttribute("role", "button");
 
-        const icon = document.createElement("i");
+			const icon = document.createElement("i");
 
-        function set_icon(){
-            if (favourites.includes(current_course.toString())) {
-                icon.setAttribute("class", "fa fa-times");
-                label.text = "Rimuovi dai preferiti";
-            }else{
-                icon.setAttribute("class", "fa fa-star");
-                label.text = "Aggiungi ai preferiti";
-            }
-            label.prepend(icon);
-        }
+			function set_icon(){
+				if (favourites.includes(current_course.toString())) {
+					icon.setAttribute("class", "fa fa-times");
+					label.text = "Rimuovi dai preferiti";
+				}else{
+					icon.setAttribute("class", "fa fa-star");
+					label.text = "Aggiungi ai preferiti";
+				}
+				label.prepend(icon);
+			}
 
-        set_icon();
+			set_icon();
 
-        label.onclick = () => {
-            toggle_favourite();
-            set_icon();
-        };
+			label.onclick = () => {
+				toggle_favourite();
+				set_icon();
+			};
 
 
-        course_content[0].prepend(label);
-    }
+			course_content[0].prepend(label);
+		}
+	}
 }
 
 
